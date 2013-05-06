@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'splicer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "splice"
+  spec.name          = "splicer"
   spec.version       = Splicer::VERSION
   spec.authors       = ["Matthew Johnston"]
   spec.email         = ["warmwaffles@gmail.com"]

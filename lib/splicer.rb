@@ -44,11 +44,9 @@ module Splicer
   #
   # @raise [ArgumentError]
   # @param [Splicer::Provider] provider the provider you want to add
-  def self.add_provider(provider)
-    unless provider.is_a?(Splicer::Provider)
-      raise ArgumentError.new('provider must be of type Splicer::Provider')
-    end
-    @@providers[provider.name] = provider
+  # @return [Splicer::Provider]
+  def self.register(provider)
+    providers[provider.name] = provider
   end
 
   # Get a provider from the providers hash. If the provider is not found `nil`
@@ -56,6 +54,10 @@ module Splicer
   #
   # @return [Splicer::Provider]
   def self.provider(name)
-    @@providers[name]
+    providers[name]
+  end
+
+  def self.providers
+    @@providers ||= {}
   end
 end
