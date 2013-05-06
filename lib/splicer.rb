@@ -1,5 +1,6 @@
 require 'splicer/version'
 require 'splicer/errors'
+require 'splicer/configuration'
 require 'splicer/records'
 require 'splicer/zone'
 require 'splicer/provider'
@@ -30,34 +31,14 @@ require 'splicer/provider'
 #
 # @author Matthew A. Johnston <warmwaffles@gmail.com>
 module Splicer
+
   class << self
-    # All of the available providers
-    @@providers = {}
-
-    # Configure Splicer
-    def configure
-      yield self
-    end
+    attr_accessor :configuration
   end
 
-  # Add a DNS provider to your
-  #
-  # @raise [ArgumentError]
-  # @param [Splicer::Provider] provider the provider you want to add
-  # @return [Splicer::Provider]
-  def self.register(provider)
-    providers[provider.name] = provider
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
   end
 
-  # Get a provider from the providers hash. If the provider is not found `nil`
-  # will be returned
-  #
-  # @return [Splicer::Provider]
-  def self.provider(name)
-    providers[name]
-  end
-
-  def self.providers
-    @@providers ||= {}
-  end
 end
