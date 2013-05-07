@@ -22,8 +22,8 @@ gem 'splicer'
 
 ```rb
 Splicer.configure do |config|
-  config.register(Splicer::Dynect.new('company','user','pass')) # gem 'splicer-dynect'
-  config.register(Splicer::DNSMadeEasy.new('user','pass')) # gem 'splicer-dns_made_easy'
+  config.register(Splicer::Dynect::Config.new('company','user','pass')) # gem 'splicer-dynect'
+  config.register(Splicer::DNSMadeEasy::Config.new('user','pass')) # gem 'splicer-dns_made_easy'
 end
 ```
 
@@ -53,7 +53,7 @@ Is a collection of records.
 ```rb
 zone = Splicer::Zone.new('example.com')
 zone.add_record(record)
-zone.publish
+zone.publish(:merge)
 ```
 
 When `Splicer::Zone#publish` is called, the provider can be passed to only push
