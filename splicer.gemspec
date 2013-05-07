@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["warmwaffles@gmail.com"]
   spec.description   = %q{Splicer allows communication with one or more dns providers}
   spec.summary       = %q{Splicer allows communication with one or more dns providers}
-  spec.homepage      = "https://github.com/warmwaffles/splice"
+  spec.homepage      = "https://github.com/zippykid/splicer"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
