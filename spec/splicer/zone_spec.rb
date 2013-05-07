@@ -9,6 +9,7 @@ describe Splicer::Zone do
     it { should respond_to :name= }
     it { should respond_to :records }
   end
+
   describe '#initialize' do
     subject { zone }
     its(:name) { should eq('example.com') }
@@ -30,6 +31,11 @@ describe Splicer::Zone do
     it "should add the records" do
       expect { zone.add_records([a_record, cname_record]) }.to change(zone.records, :count).by(2)
     end
+  end
+
+  describe '#publish' do
+    subject { zone.publish(:merge) }
+    it { should eq(true) }
   end
 
 end

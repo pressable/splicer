@@ -1,25 +1,20 @@
 module Splicer
 
   class Configuration
-    attr_reader :providers
-
     def initialize
-      @providers = {}
+      @configs = []
     end
 
-    # @param [Splicer::Provider] provider the dns provider
-    # @return [Boolean]
-    def register(provider)
-      @providers[provider.name] = provider
-      true
-    rescue => error
-      false
+    # @param [Object] config the configuration for a provider
+    # @return [void]
+    def register(config)
+      @configs << config
     end
 
-    # @param [Symbol] name the name of the provider
-    # @return [Splicer::Provider]
-    def provider(name)
-      @providers[name]
+    # Returns a list of providers.
+    # @return [Array] an array of providers
+    def providers
+      @configs.collect { |config| config.provider }
     end
   end
 

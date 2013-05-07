@@ -22,6 +22,15 @@ module Splicer
     def add_records(records)
       @records.concat(records)
     end
+
+    # @param [Symbol] method the method by which you want to publish
+    # @return [void]
+    def publish(method)
+      Splicer.providers.each do |provider|
+        provider.publish(self, method)
+      end
+      true
+    end
   end
 
 end

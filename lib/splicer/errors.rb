@@ -7,5 +7,8 @@ module Splicer
     class NotImplemented < Error
     end
 
+    class RequestError < Error
+    end
+
   end
 end

@@ -3,7 +3,6 @@ require 'splicer/errors'
 require 'splicer/configuration'
 require 'splicer/records'
 require 'splicer/zone'
-require 'splicer/provider'
 
 # Splicer is a simple DNS data structure that allows you to publish changes to
 # one or more dns services if desired.
@@ -19,26 +18,29 @@ require 'splicer/provider'
 #
 #   * splicer-dynect
 #   * splicer-dns_made_easy
+#   * splicer-no_op_provider
 #
 # == Example Configureation
 #
 #   Splicer.configure do |config|
-#     config.add_provider Splicer::Dynect('company','user','password')
-#     config.add_provider Splicer::DNSMadeEasy('user','password')
+#     config.register Splicer::Dynect::Config.new('company','user','password')
+#     config.register Splicer::DNSMadeEasy::Config.new('user','password')
 #   end
 #
 # @see Splicer::Provider for more information
 #
 # @author Matthew A. Johnston <warmwaffles@gmail.com>
 module Splicer
+  @@configuration = nil
 
-  class << self
-    attr_accessor :configuration
+  def self.configure &block
+    @@configuration = Configuration.new
+    yield(@@configuration)
   end
 
-  def self.configure
-    self.configuration ||= Configuration.new
-    yield(configuration)
+  def self.providers
+    @@configuration ||= Configuration.new
+    @@configuration.providers
   end
 
 end

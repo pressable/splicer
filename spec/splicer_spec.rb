@@ -14,4 +14,27 @@ describe Splicer do
     end
   end
 
+  describe '.configuration' do
+    subject { Splicer.providers }
+
+    context 'when no configurations are present' do
+      before do
+        Splicer.configure do |config|
+        end
+      end
+      it { should eq([]) }
+    end
+
+    context 'when a configuration is present' do
+      let(:one_provider) { double('Splicer::OneDNS::Provider')}
+      let(:one_dns) { double('Splicer::OneDNS', provider: one_provider) }
+      before do
+        Splicer.configure do |config|
+          config.register(one_dns)
+        end
+      end
+      it { should eq([one_provider]) }
+    end
+  end
+
 end
