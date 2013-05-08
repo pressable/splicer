@@ -1,5 +1,7 @@
 # Splicer
 
+[![Code Climate](https://codeclimate.com/github/zippykid/splicer.png)](https://codeclimate.com/github/zippykid/splicer)
+
 Allows for interactions with multiple DNS' through one abstract API. You can use
 this to talk to one or more DNS providers if you choose.
 

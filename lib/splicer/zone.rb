@@ -1,13 +1,14 @@
 module Splicer
 
   class Zone
-    attr_accessor :name
+    attr_accessor :name, :ttl
 
     attr_reader :records
 
     # @param [String] name the name of the zone
-    def initialize(name)
+    def initialize(name, ttl=3600)
       @name = name
+      @ttl  = ttl
       @records = Array.new
     end
 
