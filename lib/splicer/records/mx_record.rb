@@ -13,6 +13,10 @@ module Splicer
         @exchanger = exchanger
         @priority = priority
       end
+
+      def type
+        'MX'
+      end
     end
 
   end

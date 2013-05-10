@@ -11,6 +11,10 @@ module Splicer
         super(name, ttl)
         @text = text
       end
+
+      def type
+        'SPF'
+      end
     end
 
   end

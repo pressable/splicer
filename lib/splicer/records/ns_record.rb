@@ -11,6 +11,10 @@ module Splicer
         super(name, ttl)
         @server = server
       end
+
+      def type
+        'NS'
+      end
     end
 
   end

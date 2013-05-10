@@ -11,6 +11,10 @@ module Splicer
         super(name, ttl)
         @ip = ip
       end
+
+      def type
+        'AAAA'
+      end
     end
 
   end

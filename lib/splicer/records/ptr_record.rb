@@ -11,6 +11,10 @@ module Splicer
         super(name, ttl)
         @host = host
       end
+
+      def type
+        'PTR'
+      end
     end
 
   end

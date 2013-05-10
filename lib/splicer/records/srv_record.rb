@@ -17,6 +17,10 @@ module Splicer
         @priority = priority
         @weight = weight
       end
+
+      def type
+        'SRV'
+      end
     end
 
   end

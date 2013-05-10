@@ -11,6 +11,10 @@ module Splicer
         super(name, ttl)
         @cname = cname
       end
+
+      def type
+        'CNAME'
+      end
     end
 
   end
