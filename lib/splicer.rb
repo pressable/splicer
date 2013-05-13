@@ -76,7 +76,7 @@ module Splicer
   def self.update_zone(zone)
     return false unless zone.is_a?(Splicer::Zone)
     providers.each do |provider|
-      provider.update_zone(provider)
+      provider.update_zone(zone)
     end
   end
 
