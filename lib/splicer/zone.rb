@@ -13,15 +13,17 @@ module Splicer
     end
 
     # Adds a single record to this zone
-    # @return [void]
+    # @return [Boolean]
     def add_record(record)
+      return false unless record.is_a?(Splicer::Records::Record)
       @records.push(record)
+      true
     end
 
     # Adds a set of records to this zone
-    # @return [void]
+    # @return [Boolean]
     def add_records(records)
-      @records.concat(records)
+      records.each { |r| add_record(r) }
     end
 
     # @param [Symbol] method the method by which you want to publish

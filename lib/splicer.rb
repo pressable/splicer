@@ -1,6 +1,7 @@
 require 'splicer/version'
 require 'splicer/errors'
 require 'splicer/configuration'
+require 'splicer/provider'
 require 'splicer/records'
 require 'splicer/zone'
 
@@ -23,8 +24,8 @@ require 'splicer/zone'
 # == Example Configureation
 #
 #   Splicer.configure do |config|
-#     config.register Splicer::Dynect::Config.new('company','user','password')
-#     config.register Splicer::DNSMadeEasy::Config.new('user','password')
+#     config.register(Splicer::Dynect::Config.new('company','user','password'))
+#     config.register(Splicer::DNSMadeEasy::Config.new('user','password'))
 #   end
 #
 # @see Splicer::Provider for more information
@@ -33,14 +34,77 @@ require 'splicer/zone'
 module Splicer
   @@configuration = nil
 
+  # Configures the splicer library
+  # @return [void]
   def self.configure &block
     @@configuration = Configuration.new
     yield(@@configuration)
   end
 
+  # Gets a list of providers
+  # @return [Array<Splicer::Providers::Base>]
   def self.providers
     @@configuration ||= Configuration.new
     @@configuration.providers
   end
 
+  # @return [void]
+  def self.create_zone(zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    providers.each do |provider|
+      provider.create_zone(zone)
+    end
+  end
+
+  # @return [void]
+  def self.delete_zone(zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    providers.each do |provider|
+      provider.delete_zone(zone)
+    end
+  end
+
+  # @return [void]
+  def self.rewrite_zone(zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    providers.each do |provider|
+      provider.rewrite_zone(zone)
+    end
+  end
+
+  # @return [void]
+  def self.update_zone(zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    providers.each do |provider|
+      provider.update_zone(provider)
+    end
+  end
+
+  # @return [void]
+  def self.create_record_in_zone(record, zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    return false unless record.is_a?(Splicer::Records::Record)
+    providers.each do |provider|
+      provider.create_record_in_zone(record, zone)
+    end
+  end
+
+  # @return [void]
+  def self.update_record_in_zone(record, zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    return false unless record.is_a?(Splicer::Records::Record)
+    providers.each do |provider|
+      provider.update_record_in_zone(record, zone)
+    end
+  end
+
+  # Deletes a record from a zone
+  # @return [void]
+  def self.delete_record_in_zone(record, zone)
+    return false unless zone.is_a?(Splicer::Zone)
+    return false unless record.is_a?(Splicer::Records::Record)
+    providers.each do |provider|
+      provider.delete_record_in_zone(record, zone)
+    end
+  end
 end
