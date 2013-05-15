@@ -37,4 +37,9 @@ describe Splicer do
     end
   end
 
+  describe '.logger' do
+    subject { Splicer.logger }
+    it { should be_a(Splicer::NullObject) }
+  end
+
 end

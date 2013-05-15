@@ -42,7 +42,7 @@ module Splicer
   def self.configure &block
     @@configuration = Configuration.new
     yield(@@configuration)
-    @logger = @@configuration.logger
+    @@logger = @@configuration.logger
   end
 
   # Gets a list of providers
