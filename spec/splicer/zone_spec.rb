@@ -17,7 +17,7 @@ describe Splicer::Zone do
   end
 
   describe '#add_record' do
-    let(:record) { double('ARecord') }
+    let(:record) { Splicer::Records::ARecord.new(nil, '127.0.0.1') }
 
     it "should add the record" do
       expect { zone.add_record(record) }.to change(zone.records, :count).by(1)
@@ -25,8 +25,8 @@ describe Splicer::Zone do
   end
 
   describe '#add_records' do
-    let(:cname_record) { double('CNAMERecord') }
-    let(:a_record) { double('ARecord') }
+    let(:cname_record) { Splicer::Records::CNAMERecord.new('www', 'example.com') }
+    let(:a_record) { Splicer::Records::ARecord.new(nil, '127.0.0.1') }
 
     it "should add the records" do
       expect { zone.add_records([a_record, cname_record]) }.to change(zone.records, :count).by(2)

@@ -1,8 +1,11 @@
 module Splicer
 
   class Configuration
+    attr_accessor :logger
+
     def initialize
       @configs = []
+      @logger = NullObject.new
     end
 
     # @param [Object] config the configuration for a provider

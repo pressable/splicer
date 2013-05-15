@@ -1,5 +1,6 @@
 require 'splicer/version'
 require 'splicer/errors'
+require 'splicer/null_object'
 require 'splicer/configuration'
 require 'splicer/provider'
 require 'splicer/records'
@@ -26,6 +27,7 @@ require 'splicer/zone'
 #   Splicer.configure do |config|
 #     config.register(Splicer::Dynect::Config.new('company','user','password'))
 #     config.register(Splicer::DNSMadeEasy::Config.new('user','password'))
+#     config.logger = Logger.new(STDOUT)
 #   end
 #
 # @see Splicer::Provider for more information
@@ -33,12 +35,14 @@ require 'splicer/zone'
 # @author Matthew A. Johnston <warmwaffles@gmail.com>
 module Splicer
   @@configuration = nil
+  @@logger = nil
 
   # Configures the splicer library
   # @return [void]
   def self.configure &block
     @@configuration = Configuration.new
     yield(@@configuration)
+    @logger = @@configuration.logger
   end
 
   # Gets a list of providers
@@ -106,5 +110,11 @@ module Splicer
     providers.each do |provider|
       provider.delete_record_in_zone(record, zone)
     end
+  end
+
+  # The logger that splicer will use
+  # @return [Logger|Splicer::NullObject]
+  def self.logger
+    @@logger
   end
 end
