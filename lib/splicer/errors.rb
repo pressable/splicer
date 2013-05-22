@@ -4,9 +4,6 @@ module Splicer
     class Error < StandardError
     end
 
-    class NotImplemented < Error
-    end
-
     class RequestError < Error
     end
 

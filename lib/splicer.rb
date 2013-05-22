@@ -2,7 +2,6 @@ require 'splicer/version'
 require 'splicer/errors'
 require 'splicer/null_object'
 require 'splicer/configuration'
-require 'splicer/provider'
 require 'splicer/records'
 require 'splicer/zone'
 
@@ -65,22 +64,6 @@ module Splicer
     return false unless zone.is_a?(Splicer::Zone)
     providers.each do |provider|
       provider.delete_zone(zone)
-    end
-  end
-
-  # @return [void]
-  def self.rewrite_zone(zone)
-    return false unless zone.is_a?(Splicer::Zone)
-    providers.each do |provider|
-      provider.rewrite_zone(zone)
-    end
-  end
-
-  # @return [void]
-  def self.update_zone(zone)
-    return false unless zone.is_a?(Splicer::Zone)
-    providers.each do |provider|
-      provider.update_zone(zone)
     end
   end
 

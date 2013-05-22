@@ -32,10 +32,4 @@ describe Splicer::Zone do
       expect { zone.add_records([a_record, cname_record]) }.to change(zone.records, :count).by(2)
     end
   end
-
-  describe '#publish' do
-    subject { zone.publish(:merge) }
-    it { should eq(true) }
-  end
-
 end
