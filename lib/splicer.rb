@@ -3,6 +3,7 @@ require 'splicer/errors'
 require 'splicer/null_object'
 require 'splicer/configuration'
 require 'splicer/records'
+require 'splicer/provider'
 require 'splicer/zone'
 
 # Splicer is a simple DNS data structure that allows you to publish changes to
@@ -98,6 +99,6 @@ module Splicer
   # The logger that splicer will use
   # @return [Logger|Splicer::NullObject]
   def self.logger
-    @@logger
+    @@logger || NullObject.new
   end
 end
