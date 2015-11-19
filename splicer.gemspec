@@ -6,8 +6,8 @@ require 'splicer/version'
 Gem::Specification.new do |spec|
   spec.name          = "splicer"
   spec.version       = Splicer::VERSION
-  spec.authors       = ["Matthew Johnston"]
-  spec.email         = ["warmwaffles@gmail.com"]
+  spec.authors       = ["Matthew Johnston", "Joshua Stowers"]
+  spec.email         = ["warmwaffles@gmail.com", "joshua@pressable.com"]
   spec.description   = %q{Splicer allows communication with one or more dns providers}
   spec.summary       = %q{Splicer allows communication with one or more dns providers}
   spec.homepage      = "https://github.com/zippykid/splicer"
