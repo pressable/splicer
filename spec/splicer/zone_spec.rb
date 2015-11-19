@@ -12,8 +12,14 @@ describe Splicer::Zone do
 
   describe '#initialize' do
     subject { zone }
-    its(:name) { should eq('example.com') }
-    its(:records) { should eq([]) }
+
+    it "is expected to have :name equal to 'example.com'" do
+      expect(zone.name).to eq('example.com')
+    end
+
+    it 'is expected to see records return an empty array' do
+      expect(zone.records).to eq([])
+    end
   end
 
   describe '#add_record' do
