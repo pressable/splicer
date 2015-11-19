@@ -8,10 +8,8 @@ describe Splicer::Configuration do
   end
 
   describe '#initialize' do
-    subject { config }
-    it 'is expected to see providers return an empty array' do
-      expect(config.providers).to eq([])
-    end
+    subject { config.providers }
+    it { should eq([]) }
   end
 
   describe '#register' do
