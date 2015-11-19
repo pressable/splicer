@@ -54,7 +54,7 @@ module Splicer
 
   # @return [void]
   def self.create_zone(zone)
-    return false unless zone.is_a?(Splicer::Zone)
+    return false if zone_is_invalid(zone)
     providers.each do |provider|
       provider.create_zone(zone)
     end
@@ -62,7 +62,7 @@ module Splicer
 
   # @return [void]
   def self.delete_zone(zone)
-    return false unless zone.is_a?(Splicer::Zone)
+    return false if zone_is_invalid(zone)
     providers.each do |provider|
       provider.delete_zone(zone)
     end
@@ -70,8 +70,7 @@ module Splicer
 
   # @return [void]
   def self.create_record_in_zone(record, zone)
-    return false unless zone.is_a?(Splicer::Zone)
-    return false unless record.is_a?(Splicer::Records::Record)
+    return false if arguments_are_invalid(record, zone)
     providers.each do |provider|
       provider.create_record_in_zone(record, zone)
     end
@@ -79,18 +78,25 @@ module Splicer
 
   # @return [void]
   def self.update_record_in_zone(record, zone)
-    return false unless zone.is_a?(Splicer::Zone)
-    return false unless record.is_a?(Splicer::Records::Record)
+    return false if arguments_are_invalid(record, zone)
     providers.each do |provider|
       provider.update_record_in_zone(record, zone)
+    end
+  end
+
+  # Fetches list of associated records
+  # @return [] WE'LL FIGURE THIS OUT AS WE GO
+  def self.get_records_for(record, zone)
+    return false if arguments_are_invalid(record, zone)
+    providers.each do |provider|
+      provider.get_records_for(record, zone)
     end
   end
 
   # Deletes a record from a zone
   # @return [void]
   def self.delete_record_in_zone(record, zone)
-    return false unless zone.is_a?(Splicer::Zone)
-    return false unless record.is_a?(Splicer::Records::Record)
+    return false if arguments_are_invalid(record, zone)
     providers.each do |provider|
       provider.delete_record_in_zone(record, zone)
     end
@@ -101,4 +107,13 @@ module Splicer
   def self.logger
     @@logger || NullObject.new
   end
+
+  def self.arguments_are_invalid(record, zone)
+    !record.is_a?(Splicer::Records::Record) || zone_is_invalid(zone)
+  end
+
+  def zone_is_invalid(zone)
+    !zone.is_a?(Splicer::Zone)
+  end
+
 end
