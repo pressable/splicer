@@ -112,7 +112,7 @@ module Splicer
     !record.is_a?(Splicer::Records::Record) || zone_is_invalid(zone)
   end
 
-  def zone_is_invalid(zone)
+  def self.zone_is_invalid(zone)
     !zone.is_a?(Splicer::Zone)
   end
 
