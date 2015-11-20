@@ -20,6 +20,10 @@ module Splicer
     def create_record_in_zone(record, zone)
       false
     end
+
+    def get_records_for(record, zone)
+      false
+    end
   end
 
 end
