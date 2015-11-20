@@ -86,10 +86,10 @@ module Splicer
 
   # Fetches list of associated records
   # @return [] WE'LL FIGURE THIS OUT AS WE GO
-  def self.get_records_for(record, zone)
-    return false if arguments_are_invalid(record, zone)
+  def self.get_records_for(zone)
+    return false if zone_is_invalid(zone)
     providers.each do |provider|
-      provider.get_records_for(record, zone)
+      provider.get_records_for(zone)
     end
   end
 
