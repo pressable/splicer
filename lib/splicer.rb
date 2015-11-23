@@ -88,9 +88,14 @@ module Splicer
   # @return [] WE'LL FIGURE THIS OUT AS WE GO
   def self.get_records_for(zone)
     return false if zone_is_invalid(zone)
-    providers.each do |provider|
+    record_lists = providers.each do |provider|
       provider.get_records_for(zone)
     end
+    records = []
+    record_lists.each do |record_list|
+      record_list.records.each { |record| records << record }
+    end
+    records
   end
 
   # Deletes a record from a zone
