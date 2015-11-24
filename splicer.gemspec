@@ -21,7 +21,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.3', '>= 1.3.0'
   spec.add_development_dependency 'rake', '~> 10.4', '>= 10.4.0'
   spec.add_development_dependency 'rspec', '~> 3.4.0', '>= 3.4.0'
-
-  spec.add_dependency('splicer', '~> 2.2', '>= 2.2.0')
-  spec.add_dependency('rest-client', '~> 1.8', '>= 1.0.0')
 end
