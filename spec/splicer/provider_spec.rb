@@ -29,4 +29,9 @@ describe Splicer::Provider do
     subject { provider.delete_record_in_zone(record, zone) }
     it { should be_falsy }
   end
+
+  describe '#get_records_for' do
+    subject { provider.get_records_for(zone) }
+    it { should be_falsy }
+  end
 end
