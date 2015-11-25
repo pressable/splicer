@@ -32,6 +32,6 @@ describe Splicer::Provider do
 
   describe '#get_records_for' do
     subject { provider.get_records_for(zone) }
-    it { should be_falsy }
+    it { should eq([]) }
   end
 end
