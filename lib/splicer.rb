@@ -70,7 +70,7 @@ module Splicer
 
   # @return [void]
   def self.create_record_in_zone(record, zone)
-    return false if arguments_are_invalid(record, zone)
+    return false if domain_information_is_invalid(record, zone)
     providers.each do |provider|
       provider.create_record_in_zone(record, zone)
     end
@@ -78,7 +78,7 @@ module Splicer
 
   # @return [void]
   def self.update_record_in_zone(record, zone)
-    return false if arguments_are_invalid(record, zone)
+    return false if domain_information_is_invalid(record, zone)
     providers.each do |provider|
       provider.update_record_in_zone(record, zone)
     end
@@ -101,7 +101,7 @@ module Splicer
   # Deletes a record from a zone
   # @return [void]
   def self.delete_record_in_zone(record, zone)
-    return false if arguments_are_invalid(record, zone)
+    return false if domain_information_is_invalid(record, zone)
     providers.each do |provider|
       provider.delete_record_in_zone(record, zone)
     end
@@ -113,7 +113,7 @@ module Splicer
     @@logger || NullObject.new
   end
 
-  def self.arguments_are_invalid(record, zone)
+  def self.domain_information_is_invalid(record, zone)
     !record.is_a?(Splicer::Records::Record) || zone_is_invalid(zone)
   end
 
