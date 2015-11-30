@@ -8,8 +8,8 @@ describe Splicer::Configuration do
   end
 
   describe '#initialize' do
-    subject { config }
-    its(:providers) { should eq([]) }
+    subject { config.providers }
+    it { should eq([]) }
   end
 
   describe '#register' do
