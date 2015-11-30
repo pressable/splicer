@@ -86,3 +86,7 @@ If you write a provider you **MUST** follow a few rules:
 Any and all contributions are welcome. Be sure to create a feature branch and
 send pull requests. Always, always, run `rspec spec` or `rake` to ensure that
 all tests are passing.
+
+## Note:
+
+As of version 2.2.0, Dynect will no longer be fully supported.

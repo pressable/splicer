@@ -1,0 +1,1 @@
+Version 2.2.0 drops support for splicer-dynect 2.1.0 and prior, as it does not contain a get_records_for method
