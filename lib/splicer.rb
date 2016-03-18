@@ -84,7 +84,7 @@ module Splicer
     end
   end
 
-  # @return [void]
+  # Returns the zone data from domain host
   def self.get_zone_for(zone)
     return false if zone_is_invalid(zone)
     zone_array = providers.map { |provider| provider.get_zone_for(zone) }
