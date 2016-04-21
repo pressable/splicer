@@ -21,6 +21,10 @@ module Splicer
       false
     end
 
+    def get_zone_for(zone)
+      false
+    end
+
     def get_records_for(zone)
       []
     end

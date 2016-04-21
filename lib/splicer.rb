@@ -84,11 +84,18 @@ module Splicer
     end
   end
 
+  # Returns the zone data from domain host
+  def self.get_zone_for(zone)
+    return false if zone_is_invalid(zone)
+    zone_array = providers.map { |provider| provider.get_zone_for(zone) }
+    zone_array.compact.first
+  end
+
   # Fetches list of associated records
   # @returns an array of Record objects
   def self.get_records_for(zone)
     return [] if zone_is_invalid(zone)
-    providers.map { |provider| provider.get_records_for(zone)}.flatten
+    providers.map { |provider| provider.get_records_for(zone) }.flatten
   end
 
   # Deletes a record from a zone
