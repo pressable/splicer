@@ -55,7 +55,7 @@ module Splicer
   # @return [void]
   def self.create_zone(zone)
     return false if zone_is_invalid(zone)
-    providers.each do |provider|
+    providers.map do |provider|
       provider.create_zone(zone)
     end
   end
@@ -63,7 +63,7 @@ module Splicer
   # @return [void]
   def self.delete_zone(zone)
     return false if zone_is_invalid(zone)
-    providers.each do |provider|
+    providers.map do |provider|
       provider.delete_zone(zone)
     end
   end
@@ -71,7 +71,7 @@ module Splicer
   # @return [void]
   def self.create_record_in_zone(record, zone)
     return false if domain_information_is_invalid(record, zone)
-    providers.each do |provider|
+    providers.map do |provider|
       provider.create_record_in_zone(record, zone)
     end
   end
@@ -79,7 +79,7 @@ module Splicer
   # @return [void]
   def self.update_record_in_zone(record, zone)
     return false if domain_information_is_invalid(record, zone)
-    providers.each do |provider|
+    providers.map do |provider|
       provider.update_record_in_zone(record, zone)
     end
   end
